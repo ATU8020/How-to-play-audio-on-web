@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #bn-play-audio {
+            font-family: 'Times New Roman', Times, serif;
+
+            font-size: 16px;
+
+            min-width: 40px;
+            min-height: 40px;
+
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function playAudio() {
+            const button = document.getElementById('bn-play-audio');
+            const buttonName = button.getAttribute('name');
+
+            /*Edit format WORD*/
+            let result_first = "";
+
+            for (var i = 0; i <= buttonName.length - 1; i++) {
+                if (buttonName[i] == " ") {
+                    result_first += "%20";
+                } 
+                else if (buttonName[i] == "&amp"){
+                    result_first += "&";
+                }
+                else {
+                    result_first += buttonName[i];
+                }
+            }
+            /*Edit format WORD*/
+
+            /*Replace WORD_Formated into URL*/
+            let urlGoogleTranslate = "https://translate.google.com.vn/translate_tts?ie=UTF-8&q=$&tl=en&client=tw-ob";
+            let result_second = ""
+
+            for (var i = 0; i <= urlGoogleTranslate.length - 1; i++) {
+                if (urlGoogleTranslate[i] == "$") {
+                    result_second += result_first;
+                } else {
+                    result_second += urlGoogleTranslate[i];
+                }
+            }
+            /*Replace WORD_Formated into URL*/
+
+            /*Play audio*/
+            
+            /*https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/i/ite/item_/item__gb_2.mp3*/
+
+            alert(result_second);
+
+            document.getElementById('113-source').setAttribute('src',result_second);
+            
+            document.getElementById('113-audio').load();
+            /*Play audio*/
+        }
+    </script>
+    <audio id='113-audio' controls>
+        <source id='113-source' src="https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/k/kni/knitt/knitting__gb_3.mp3" type="audio/mpeg">
+    </audio>
+    <button id="bn-play-audio" name="birch on dependency" onclick="playAudio()">AUDIO</button>
+</body>
+
+</html>
